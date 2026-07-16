@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PIXIE: Zero-Shot 6D Pose Estimation for Assembly Defects</title>
+    <meta
+      name="description"
+      content="PIXIE: A Zero-Shot texture-invariant 6D pose estimation framework for unseen objects with assembly defects."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="topband"></div>
+    <header class="hero">
+      <div class="container">
+        <div class="brand-row">
+          <div class="brand-logo-shell">
+            <img
+              class="brand-logo"
+              src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Zeiss_logo.svg/1280px-Zeiss_logo.svg.png"
+              alt="ZEISS logo"
+            />
+          </div>
+        </div>
+        <h1>
+          PIXIE: A Zero-Shot texture-invariant 6D pose estimation framework for unseen objects with assembly defects
+        </h1>
+        <p class="authors">
+          Leon Jungemeyer<sup>1</sup>, Alejandro Magaña<sup>2</sup>, Gautham Mohan<sup>1</sup>, Matthias Karl<sup>1</sup>, Daniel Werdehausen<sup>1</sup>
+        </p>
+        <p class="affiliations">
+          <sup>1</sup>Carl Zeiss AG, Oberkochen, Germany<br />
+          <sup>2</sup>Carl Zeiss Digital Innovation, Munich, Germany
+        </p>
+        <p class="hero-links">
+          <a class="hero-button" href="https://github.com/placeholder">Dataset on GitHub</a>
+          <a class="hero-button hero-button-secondary" href="https://arxiv.com/placeholder">Paper on arXiv</a>
+        </p>
+      </div>
+    </header>
+
+    <main class="container content">
+      <section>
+        <h2>Abstract</h2>
+        <p>
+          6D pose estimation remains a key challenge in robotics and computer vision, particularly in industrial
+          environments. The deployment of currently available data-driven methods is often limited by resource-intensive
+          data pipelines, reliance on textured 3D models, and sensitivity to geometric deviations caused by damages or
+          assembly defects. We present PIXIE, a zero-shot framework that estimates the 6D pose of an object from an RGB
+          image using only an untextured 3D model. Synthetic depth and normal maps are rendered from sampled reference
+          viewpoints and matched to the query image via a pretrained cross-modality feature matcher. Matched keypoints are
+          back-projected to obtain 2D-3D correspondences for PnP-based pose estimation. Relying exclusively on geometry
+          makes the method inherently robust to lighting and texture variation, while correspondence filtering handles
+          geometric deviations between the model and physical object. We evaluate on widely-used public benchmarks,
+          reporting state-of-the-art results on texture-less objects without object-specific training, and introduce a novel
+          dataset with assembly defects, texture variations, and occlusion to demonstrate real-world applicability.
+        </p>
+      </section>
+
+      <section>
+        <h2>Method Overview</h2>
+        <p>
+          PIXIE estimates 6D pose from RGB using only an untextured target CAD model. The pipeline renders geometric
+          reference views, matches them to the query image using pretrained cross-modality features, and recovers pose via
+          2D-3D correspondences and PnP.
+        </p>
+        <figure class="feature-figure">
+          <img
+            src="resources/method/overview_vertical_new.svg"
+            alt="Overview of the PIXIE method pipeline from reference rendering to pose estimation"
+          />
+        </figure>
+      </section>
+
+      <section>
+        <h2>Dataset</h2>
+        <p>
+          This repository hosts the PIXIE Assembly Dataset, a test-only benchmark for zero-shot evaluation of robust 6DoF
+          pose estimation under assembly defects, color variation, and clutter.
+        </p>
+        <p>
+          The dataset is designed for evaluation-only usage and targets methods that must estimate object pose using only
+          the fully assembled target model at inference time.
+        </p>
+        <div class="gallery gallery-two">
+          <figure class="gallery-card">
+            <img
+              src="resources/dataset/assembly_mistake_2.png"
+              alt="Example 3D model from the dataset showing an assembly mistake configuration"
+            />
+            <img
+              src="resources/dataset/IMG_4570.JPG"
+              alt="Dataset image showing the corresponding assembly mistake with clutter"
+            />
+          </figure>
+          <figure class="gallery-card">
+            <img
+              src="resources/dataset/assembly_mistake_3.png"
+              alt="Another example 3D model from the dataset showing an assembly mistake configuration"
+            />
+            <img
+              src="resources/dataset/IMG_4551.JPG"
+              alt="Dataset image showing a corresponding assembly mistake with clutter"
+            />
+          </figure>
+        </div>
+      </section>
+
+      <section>
+        <h2>Qualitative Results</h2>
+        <p>
+          PIXIE remains robust across public benchmarks and the proposed assembly-defect dataset, including scenes with
+          clutter, color variation, and geometric deviations from the nominal target model.
+        </p>
+        <div class="gallery gallery-two">
+          <figure class="gallery-card">
+            <img
+              src="resources/results_pixie/bop/output_visualization_scene_000007_image_000094.png"
+              alt="PIXIE qualitative result on a BOP benchmark scene"
+            />
+          </figure>
+          <figure class="gallery-card">
+            <img
+              src="resources/results_pixie/bop/output_visualization_scene_000016_image_000287.png"
+              alt="Additional PIXIE qualitative result on a BOP benchmark scene"
+            />
+          </figure>
+          <figure class="gallery-card">
+            <img
+              src="resources/results_pixie/dataset/IMG_4323_overlay.png"
+              alt="PIXIE overlay result on the assembly dataset"
+            />
+          </figure>
+          <figure class="gallery-card">
+            <img
+              src="resources/results_pixie/dataset/IMG_4876_overlay.png"
+              alt="Additional PIXIE overlay result on the assembly dataset"
+            />
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="container footer">
+      <p><a href="https://www.zeiss.de/corporate/rechtliches/impressum.html">ZEISS Impressum</a></p>
+    </footer>
+
+  </body>
+</html>

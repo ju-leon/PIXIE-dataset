@@ -1,0 +1,23 @@
+# data
+
+# ignore images
+# *.jpg
+# *.JPG
+# *.jpeg
+# *.png
+# *.bmp
+# *.tiff
+# *.gif
+
+# ignore json files
+# *.jsonö
+
+# ignore visualisations
+**/pose_visualization
+
+# ignore test files
+**/*test*
+
+# ignore pycache
+*.pyc
+.DS_Store
